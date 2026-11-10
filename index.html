@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ShopNest - Online Shopping</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f8f9fc;
+    color: #222;
+}
+
+/* Navigation */
+.navbar {
+    background: white;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
+
+.navbar-brand {
+    font-size: 27px;
+    font-weight: 800;
+    color: #6c3ce9 !important;
+}
+
+.nav-link {
+    color: #333 !important;
+    font-weight: 500;
+    margin: 0 10px;
+}
+
+.nav-link:hover {
+    color: #6c3ce9 !important;
+}
+
+.search-box {
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    padding: 9px 15px;
+    outline: none;
+    width: 180px;
+}
+
+/* Hero */
+.hero {
+    min-height: 480px;
+    display: flex;
+    align-items: center;
+    color: white;
+    background:
+    linear-gradient(90deg, rgba(20,15,50,.88), rgba(20,15,50,.25)),
+    url('https://images.unsplash.com/photo-1607082349566-187342175e2f?w=1600') center/cover;
+    padding: 70px 0;
+}
+
+.hero h1 {
+    font-size: 52px;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.hero p {
+    font-size: 17px;
+    margin: 20px 0;
+}
+
+.btn-main {
+    background: #ff6b35;
+    color: white;
+    padding: 12px 28px;
+    border-radius: 30px;
+    border: none;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-outline {
+    border: 2px solid white;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+/* Common Sections */
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-title h2 {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.section-title p {
+    color: #777;
+}
+
+/* Products */
+.products-section {
+    padding: 75px 0;
+}
+
+.product-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid #eee;
+    margin-bottom: 25px;
+    transition: 0.3s;
+    height: 100%;
+}
+
+.product-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.10);
+}
+
+.product-card img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 18px;
+}
+
+.product-info h5 {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.old-price {
+    color: #999;
+    text-decoration: line-through;
+    margin-right: 8px;
+}
+
+.new-price {
+    color: #6c3ce9;
+    font-weight: 700;
+    font-size: 19px;
+}
+
+.stars {
+    color: #ffb400;
+    margin: 8px 0;
+}
+
+.add-btn {
+    width: 100%;
+    background: #6c3ce9;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.add-btn:hover {
+    background: #5124c5;
+}
+
+/* Categories */
+.categories-section {
+    padding: 70px 0;
+    background: white;
+}
+
+.category-card {
+    height: 190px;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.category-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.4s;
+}
+
+.category-card:hover img {
+    transform: scale(1.1);
+}
+
+.category-card a {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 23px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/* Aside */
+.offer-box {
+    background: #eee8ff;
+    border-left: 5px solid #6c3ce9;
+    padding: 25px;
+    border-radius: 12px;
+    margin: 30px 0;
+}
+
+.offer-box h4 {
+    color: #5124c5;
+    font-weight: 700;
+}
+
+/* Newsletter */
+.newsletter {
+    background: #6c3ce9;
+    color: white;
+    padding: 65px 15px;
+    text-align: center;
+}
+
+.newsletter h2 {
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.newsletter form {
+    max-width: 500px;
+    margin: 25px auto 0;
+    display: flex;
+    gap: 10px;
+}
+
+.newsletter input {
+    flex: 1;
+    min-width: 0;
+    padding: 13px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+}
+
+.newsletter button {
+    padding: 12px 22px;
+    background: #ff6b35;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+/* Footer */
+footer {
+    background: #17152b;
+    color: #ddd;
+    padding: 55px 0 20px;
+}
+
+footer h4, footer h5 {
+    color: white;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+footer p {
+    color: #bbb;
+    line-height: 1.8;
+}
+
+footer a {
+    display: block;
+    color: #bbb;
+    text-decoration: none;
+    margin-bottom: 12px;
+}
+
+footer a:hover {
+    color: #ff6b35;
+}
+
+.copyright {
+    border-top: 1px solid #444;
+    text-align: center;
+    margin-top: 35px;
+    padding-top: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .hero {
+        min-height: 400px;
+    }
+
+    .search-box {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .section-title h2 {
+        font-size: 26px;
+    }
+
+    .newsletter form {
+        flex-direction: column;
+    }
+
+    .btn-outline {
+        margin-left: 0;
+        margin-top: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    .product-card img {
+        height: 180px;
+    }
+
+    .category-card {
+        height: 150px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+<nav class="navbar navbar-expand-lg">
+<div class="container">
+
+<a class="navbar-brand" href="#home">ShopNest.</a>
+
+<button class="navbar-toggler" type="button"
+data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="navbarMenu">
+
+<ul class="navbar-nav mx-auto">
+<li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+<li class="nav-item"><a class="nav-link" href="#products">Products</a></li>
+<li class="nav-item"><a class="nav-link" href="#categories">Categories</a></li>
+<li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+<li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+</ul>
+
+<input class="search-box" type="search" placeholder="Search products...">
+
+<span class="ms-3 fw-bold">
+🛒 Cart (<span id="cartCount">0</span>)
+</span>
+
+</div>
+</div>
+</nav>
+</header>
+
+<!-- MAIN -->
+<main>
+
+<!-- HERO -->
+<section class="hero" id="home">
+<div class="container">
+<div class="row">
+<div class="col-lg-7">
+
+<h1>Discover Amazing Products at ShopNest</h1>
+
+<p>
+Shop smarter, live better! Explore the latest
+collections and enjoy exclusive online deals.
+</p>
+
+<a href="#products" class="btn-main">Shop Now</a>
+<a href="#categories" class="btn-outline">View Deals</a>
+
+</div>
+</div>
+</div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products-section" id="products">
+<div class="container">
+
+<div class="section-title">
+<h2>Featured Products</h2>
+<p>Explore our best-selling products</p>
+</div>
+
+<div class="row">
+
+<div class="col-lg-4 col-md-6">
+<article class="product-card">
+<img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600" alt="Wireless Headphones">
+<div class="product-info">
+<h5>Wireless Headphones</h5>
+<p>High-quality sound with comfortable design.</p>
+<span class="old-price">₹2,999</span>
+<span class="new-price">₹1,999</span>
+<div class="stars">★★★★★ (4.8)</div>
+<button class="add-btn" onclick="addToCart()">Add to Cart</button>
+</div>
+</article>
+</div>
+
+<div class="col-lg-4 col-md-6">
+<article class="product-card">
+<img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600" alt="Smart Watch">
+<div class="product-info">
+<h5>Smart Watch</h5>
+<p>Track your fitness and daily activities.</p>
+<span class="old-price">₹3,999</span>
+<span class="new-price">₹2,499</span>
+<div class="stars">★★★★★ (4.7)</div>
+<button class="add-btn" onclick="addToCart()">Add to Cart</button>
+</div>
+</article>
+</div>
+
+<div class="col-lg-4 col-md-6">
+<article class="product-card">
+<img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600" alt="Sports Shoes">
+<div class="product-info">
+<h5>Sports Shoes</h5>
+<p>Stylish and comfortable everyday footwear.</p>
+<span class="old-price">₹2,499</span>
+<span class="new-price">₹1,799</span>
+<div class="stars">★★★★★ (4.6)</div>
+<button class="add-btn" onclick="addToCart()">Add to Cart</button>
+</div>
+</article>
+</div>
+
+<div class="col-lg-4 col-md-6">
+<article class="product-card">
+<img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=600" alt="Smart Watch Pro">
+<div class="product-info">
+<h5>Smart Watch Pro</h5>
+<p>Modern design with advanced features.</p>
+<span class="old-price">₹5,999</span>
+<span class="new-price">₹3,999</span>
+<div class="stars">★★★★★ (4.9)</div>
+<button class="add-btn" onclick="addToCart()">Add to Cart</button>
+</div>
+</article>
+</div>
+
+<div class="col-lg-4 col-md-6">
+<article class="product-card">
+<img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600" alt="Digital Camera">
+<div class="product-info">
+<h5>Digital Camera</h5>
+<p>Capture beautiful moments in high quality.</p>
+<span class="old-price">₹9,999</span>
+<span class="new-price">₹7,499</span>
+<div class="stars">★★★★★ (4.7)</div>
+<button class="add-btn" onclick="addToCart()">Add to Cart</button>
+</div>
+</article>
+</div>
+
+<div class="col-lg-4 col-md-6">
+<article class="product-card">
+<img src="https://images.unsplash.com/photo-1544816155-12df9643f363?w=600" alt="Notebook">
+<div class="product-info">
+<h5>Premium Notebook</h5>
+<p>Perfect notebook for work and creativity.</p>
+<span class="old-price">₹599</span>
+<span class="new-price">₹399</span>
+<div class="stars">★★★★★ (4.5)</div>
+<button class="add-btn" onclick="addToCart()">Add to Cart</button>
+</div>
+</article>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="categories-section" id="categories">
+<div class="container">
+
+<div class="section-title">
+<h2>Shop By Categories</h2>
+<p>Find your favourite products</p>
+</div>
+
+<div class="row">
+
+<div class="col-lg-3 col-md-6">
+<div class="category-card">
+<img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?w=600" alt="Electronics">
+<a href="#products">Electronics</a>
+</div>
+</div>
+
+<div class="col-lg-3 col-md-6">
+<div class="category-card">
+<img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600" alt="Clothing">
+<a href="#products">Clothing</a>
+</div>
+</div>
+
+<div class="col-lg-3 col-md-6">
+<div class="category-card">
+<img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600" alt="Footwear">
+<a href="#products">Footwear</a>
+</div>
+</div>
+
+<div class="col-lg-3 col-md-6">
+<div class="category-card">
+<img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=600" alt="Books">
+<a href="#products">Books</a>
+</div>
+</div>
+
+</div>
+
+<aside class="offer-box">
+<h4>Special Shopping Offer!</h4>
+<p class="mb-0">
+Get exciting discounts on selected products.
+Shop now and enjoy amazing deals at ShopNest.
+</p>
+</aside>
+
+</div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+<div class="container">
+
+<h2>Subscribe to Our Newsletter</h2>
+<p>Get updates about new products and exclusive offers.</p>
+
+<form onsubmit="subscribeNewsletter(event)">
+<input type="email" placeholder="Enter your email address" required>
+<button type="submit">Subscribe</button>
+</form>
+
+</div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer id="contact">
+<div class="container">
+<div class="row">
+
+<div class="col-lg-3 col-md-6 mb-4" id="about">
+<h4>ShopNest.</h4>
+<p>
+ShopNest is your trusted online shopping destination.
+We provide quality products at affordable prices
+with a great shopping experience.
+</p>
+</div>
+
+<div class="col-lg-3 col-md-6 mb-4">
+<h5>Quick Links</h5>
+<a href="#home">Home</a>
+<a href="#products">Products</a>
+<a href="#categories">Categories</a>
+<a href="#about">About Us</a>
+</div>
+
+<div class="col-lg-3 col-md-6 mb-4">
+<h5>Contact Us</h5>
+<p>📍 Thoothukudi, Tamil Nadu</p>
+<p>📧 support@shopnest.com</p>
+<p>📞 +91 98765 43210</p>
+<p>🕒 Mon - Sat: 9 AM - 9 PM</p>
+</div>
+
+<div class="col-lg-3 col-md-6 mb-4">
+<h5>Follow Us</h5>
+<a href="https://www.facebook.com/">Facebook</a>
+<a href="https://www.instagram.com/">Instagram</a>
+<a href="https://www.twitter.com/">Twitter</a>
+<a href="https://www.youtube.com/">YouTube</a>
+</div>
+
+</div>
+
+<div class="copyright">
+<p>© 2026 ShopNest. All Rights Reserved.</p>
+</div>
+
+</div>
+</footer>
+
+<!-- JAVASCRIPT -->
+<script>
+let cartCount = 0;
+
+function addToCart() {
+    cartCount++;
+    document.getElementById("cartCount").innerText = cartCount;
+    alert("Product added to cart successfully!");
+}
+
+function subscribeNewsletter(event) {
+    event.preventDefault();
+    alert("Thank you for subscribing to ShopNest!");
+    event.target.reset();
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
